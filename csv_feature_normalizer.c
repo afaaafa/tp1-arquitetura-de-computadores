@@ -77,9 +77,30 @@ void print_resource_usage(const char* label, struct rusage* usage) {
     printf("Maximum resident set size: %ld kilobytes\n", usage->ru_maxrss);
 }
 
+void menu() {
+    printf("\n\n");
+    printf("  ____ ______     __    _   _                            _ _              \n");
+    printf(" / ___/ ___\\ \\   / /   | \\ | | ___  _ __ _ __ ___   __ _| (_)_______ _ __ \n");
+    printf("| |   \\___ \\\\ \\ / /    |  \\| |/ _ \\| '__| '_ ` _ \\ / _` | | |_  / _ \\ '__|\n");
+    printf("| |___ ___) |\\ V /     | |\\  | (_) | |  | | | | | | (_| | | |/ /  __/ |   \n");
+    printf(" \\____|____/  \\_/____  |_| \\_|\\___/|_|  |_| |_| |_|\\__,_|_|_/___\\___|_|   \n");
+    printf("               |_____|                                                    \n");
+    printf("\n\n");
+}
+
+
 int main(int arc, char **argv, char **argenv) {
+    menu();
+
+    if(arc != 2) {
+        printf("Usage: %s csv_file.csv\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+    const char * filename = argv[1];
+
     int num_elements, num_dimensions;
-    float** features = read_csv("data.csv", &num_elements, &num_dimensions);
+    float** features = read_csv(filename, &num_elements, &num_dimensions);
 
     struct rusage start_usage, end_usage;
     
