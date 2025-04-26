@@ -41,41 +41,6 @@ Example:
 ./normalize datasets/large.csv 1 100
 ```
 
-## 📊 Benchmark Automation and Data Collection
-
-We provide a shell script to automate benchmarking and save results for further analysis (executable must call `normalize`):
-
-```bash
-./benchmark.sh
-```
-
-This script will:
-
-1. Run all normalization methods against each dataset
-2. Collect performance metrics for each combination
-3. Save the results to a CSV file named `benchmark_results.csv`
-
-### How to Use the Benchmark Script
-
-1. Make sure the script is executable:
-
-   ```bash
-   chmod +x benchmark.sh
-   ```
-
-2. Run the script:
-
-   ```bash
-   ./benchmark.sh
-   ```
-
-3. Access the results:
-   ```bash
-   cat benchmark_results.csv
-   ```
-
-The CSV file contains columns for method name, dataset, dimensions, elements, execution times, and other performance metrics, making it easy to perform further analysis or create visualizations with tools like Python's pandas and matplotlib.
-
 ## 🛠️ How to Generate Datasets
 
 We provide a simple Python script to generate random datasets. There is a seed for reproducible data, but you can change in the souce code if you want.
@@ -93,6 +58,50 @@ files = {
     'large.csv': (100000, 300),
 }
 ```
+
+## 📊 Benchmark Automation and Data Collection
+
+We provide a shell script to automate benchmarking and save results for further analysis (executable must call `normalize`):
+
+```bash
+./benchmark.sh <repetitions>
+```
+
+This script will:
+
+1. Run all normalization methods against each dataset with the specified number of repetitions
+2. Collect performance metrics for each combination
+3. Save the results to a CSV file named `benchmark_results.csv`
+
+### How to Use the Benchmark Script
+
+1. Make sure the script is executable:
+
+   ```bash
+   chmod +x benchmark.sh
+   ```
+
+2. Run the script with the desired number of repetitions:
+
+   ```bash
+   ./benchmark.sh 10000
+   ```
+
+3. Access the results:
+   ```bash
+   cat benchmark_results.csv
+   ```
+
+The CSV file contains columns for method name, dataset, dimensions, elements, execution times, and other performance metrics, making it easy to perform further analysis or create visualizations with tools like Python's pandas and matplotlib.
+
+If you don't specify repetitions, the script will display usage instructions:
+
+```bash
+Usage: ./benchmark.sh <repetitions>
+Example: ./benchmark.sh 10000
+```
+
+The CSV file contains columns for method name, dataset, dimensions, elements, execution times, and other performance metrics, making it easy to perform further analysis or create visualizations with tools like Python's pandas and matplotlib.
 
 ## 📊 How to Interpret the Benchmark Results
 
